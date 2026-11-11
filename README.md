@@ -108,3 +108,29 @@ Submit:
 - Do not remove dependencies just to bypass the failure.
 
 Good luck!
+## PARTICIPANT GITHUB SUBMISSION
+
+1. Open the official Release Rush Phase 2 repository.
+2. Click Fork to create your own copy.
+3. Clone your fork:
+
+git clone YOUR_FORK_URL
+
+4. Enter the repository:
+
+cd ReleaseRush-Phase-2-Build-CI
+
+5. Fix the dependency configuration.
+6. Run tests and build verification.
+7. Commit and push your solution:
+
+git add requirements.txt
+git commit -m "fix: repair dependency version"
+git push origin main
+
+8. Open the Actions tab.
+9. Demonstrate the successful CI workflow.
+
+IMPORTANT:
+Do not push directly to the official event repository.
+Work inside your team's fork.
