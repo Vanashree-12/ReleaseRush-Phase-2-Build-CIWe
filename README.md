@@ -1,136 +1,179 @@
 # RELEASE RUSH
-## Phase 2 - Build & Continuous Integration
+## Phase 2 — Build & Continuous Integration
 
-Total Marks: 25
+**Total Marks: 25**
 
-## INCIDENT: THE BROKEN BUILD PIPELINE
+### INCIDENT: THE BROKEN BUILD PIPELINE
 
-The development team has pushed a new version of the
-inventory application.
+The development team has pushed a new version of the Inventory application.
 
-The CI workflow starts successfully but fails during
-dependency installation.
+The CI workflow starts successfully but fails during dependency installation.
 
 The automated testing and build stages are never reached.
 
-Your team has been assigned to investigate and repair
-the CI pipeline.
+Your team has been assigned to investigate and restore the pipeline.
 
-## YOUR TASKS
+### OBJECTIVES
 
-1. Inspect the failed GitHub Actions workflow.
-2. Read the supplied build failure evidence.
-3. Identify the incorrect dependency and version.
-4. Investigate the dependency history in Git.
-5. Correct the dependency configuration.
-6. Run the automated tests.
-7. Generate the application build artifact.
-8. Verify that the complete CI pipeline succeeds.
+Investigate the failed build, identify the underlying configuration problem, restore dependency installation and demonstrate a successful CI pipeline.
 
-## FILES PROVIDED
+### YOUR TASKS
 
-requirements.txt
-app.py
-tests/test_app.py
-build.py
-ci_check.py
-.github/workflows/ci.yml
-evidence/first-failed-run.log
+1. Inspect the supplied build failure evidence.
+2. Investigate the failed GitHub Actions workflow.
+3. Examine the dependency configuration.
+4. Investigate the dependency's Git history.
+5. Identify and correct the build failure.
+6. Install the required dependencies successfully.
+7. Run the automated tests.
+8. Generate the application build artifact.
+9. Verify the complete CI pipeline succeeds.
 
-## STEP 1 - INSPECT THE FAILURE
+---
 
-Read the failure evidence:
+### FILES PROVIDED
 
-Get-Content evidence/first-failed-run.log
+- `requirements.txt`
+- `app.py`
+- `tests/test_app.py`
+- `build.py`
+- `ci_check.py`
+- `.github/workflows/ci.yml`
+- `evidence/first-failed-run.log`
 
-Also open the GitHub Actions tab and inspect the failed job.
+### PARTICIPANT SETUP
 
-## STEP 2 - INVESTIGATE DEPENDENCY HISTORY
+**Step 1 — Clone the official repository**
 
-git log --oneline -- requirements.txt
+https://github.com/sammjoshuaa07-ui/ReleaseRush-Phase-2-Build-CI
 
-git log -p -- requirements.txt
+```bash
+git clone https://github.com/sammjoshuaa07-ui/ReleaseRush-Phase-2-Build-CI.git
+cd ReleaseRush-Phase-2-Build-CI
+```
 
-Identify what changed in the dependency configuration.
+**Step 2 — Create your team's repository**
 
-## STEP 3 - REPAIR THE BUILD
+The team leader must create a new, empty GitHub repository.
 
-Find the incorrect dependency pin in requirements.txt.
+Suggested name:
 
-Use the repository history and package information
-to determine an appropriate valid version.
+`RR-TEAM-ID-Phase-2-Build-CI`
 
-Do not remove the dependency entirely.
+Do not add a README, Gitignore or license during creation.
 
-## STEP 4 - TEST LOCALLY
+**Step 3 — Configure your remotes**
 
+```bash
+git remote rename origin source
+git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+```
+
+Verify:
+
+```bash
+git remote -v
+```
+
+`origin` must point to your team's repository, and `source` must point to the official event repository.
+
+**Step 4 — Push the starter repository**
+
+```bash
+git push -u origin main
+```
+
+Your team now has an independent copy with the original Git history.
+
+The original failed workflow history is not copied to your repository. Use the supplied failure evidence to investigate the original incident. Your own workflow will run on your repository.
+
+---
+
+### CHALLENGE EXECUTION
+
+**Step 5 — Investigate the failure**
+
+Examine the supplied build failure log, dependency configuration, Git history and CI workflow.
+
+Identify the stage at which the pipeline fails and establish the underlying reason.
+
+**Step 6 — Repair the configuration**
+
+Correct the dependency configuration without removing required dependencies or bypassing the installation stage.
+
+Use the repository history and package information to support your decision.
+
+**Step 7 — Validate locally**
+
+Install the dependencies and run the supplied automated tests.
+
+For example:
+
+```bash
 python -m pip install -r requirements.txt
-
 python -m unittest discover -s tests -v
+```
 
-## STEP 5 - BUILD
+**Step 8 — Generate the build artifact**
 
+```bash
 python build.py
+```
 
-## STEP 6 - VERIFY
+Inspect the generated artifact and verify that the build completed successfully.
 
+**Step 9 — Run the validation check**
+
+```bash
 python ci_check.py
+```
 
-## STEP 7 - COMMIT AND PUSH
+Confirm that the application's build and validation checks succeed.
 
-git add requirements.txt
+**Step 10 — Commit and push**
 
-git commit -m "fix: correct dependency version"
+Commit the necessary corrections and push them to your team's repository:
 
-git push
+```bash
+git add .
+git commit -m "fix: repair build pipeline"
+git push origin main
+```
 
-Open GitHub Actions and verify the workflow succeeds.
+**Step 11 — Verify GitHub Actions**
 
-## SUBMISSION
+Open your team's GitHub repository and select the Actions tab.
+
+Confirm that the latest workflow run completes successfully.
+
+---
+
+### SUBMISSION REQUIREMENTS
 
 Submit:
 
-1. Failed pipeline stage.
-2. Root cause of the failure.
-3. Incorrect dependency and version.
-4. Corrected dependency pin.
-5. Successful test output.
-6. Build artifact verification.
-7. Git commit hash.
-8. Final release flag.
+1. Team ID and member names.
+2. Your team's repository URL.
+3. Failed pipeline stage.
+4. Root cause of the failure.
+5. Evidence supporting your diagnosis.
+6. Description of the corrective action.
+7. Successful dependency installation evidence.
+8. Automated test output.
+9. Build artifact verification.
+10. Final commit hash.
+11. Successful GitHub Actions run link.
+12. Final release flag.
 
-## RULES
+### RULES
 
-- Teams of 2â€“3.
-- Internet search permitted.
-- Work only within your team.
-- Do not share answers with other teams.
-- Do not remove dependencies just to bypass the failure.
+- Teams of 2–3 members.
+- Internet search is permitted.
+- Work only within your own team.
+- Do not remove required dependencies to bypass failures.
+- Do not delete or weaken the supplied tests.
+- Preserve the existing application functionality.
+- Do not push to the official event repository or the `source` remote.
+- All solutions must be committed and pushed to your own repository.
 
-Good luck!
-## PARTICIPANT GITHUB SUBMISSION
-
-1. Open the official Release Rush Phase 2 repository.
-2. Click Fork to create your own copy.
-3. Clone your fork:
-
-git clone YOUR_FORK_URL
-
-4. Enter the repository:
-
-cd ReleaseRush-Phase-2-Build-CI
-
-5. Fix the dependency configuration.
-6. Run tests and build verification.
-7. Commit and push your solution:
-
-git add requirements.txt
-git commit -m "fix: repair dependency version"
-git push origin main
-
-8. Open the Actions tab.
-9. Demonstrate the successful CI workflow.
-
-IMPORTANT:
-Do not push directly to the official event repository.
-Work inside your team's fork.
+**Good luck!**
